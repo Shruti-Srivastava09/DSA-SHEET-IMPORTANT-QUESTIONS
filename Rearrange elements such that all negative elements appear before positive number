@@ -1,0 +1,30 @@
+vector<int> separateNegativeAndPositive(vector<int> &nums){
+
+   int N = nums.size();
+
+   int i = 0;
+
+   int j = 0;
+
+   // Write your code here.  
+
+   while(i < N){
+
+       if(nums[i] < 0){
+
+           int temp = nums[i];
+
+           nums[i] = nums[j];
+
+           nums[j] = temp;
+
+           j = j + 1;
+
+       }
+
+       i = i + 1;
+
+   }return nums;
+
+}
+Footer
