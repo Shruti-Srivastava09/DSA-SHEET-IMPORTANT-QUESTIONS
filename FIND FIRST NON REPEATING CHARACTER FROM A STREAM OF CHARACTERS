@@ -1,0 +1,84 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+struct Node
+{
+    Node *next;
+    int data;
+}*head=NULL;
+
+void create(string A,int n)
+{
+    Node *t,*last;
+    
+    head=new Node;
+    head->data=A[0];
+    head->next=NULL;
+    last=head;
+    
+    for(int i=1;i<n;i++)
+    {
+        t=new Node;
+        t->data=A[i];
+        t->next=NULL;
+        last->next=t;
+        last=t;
+    }
+}
+
+void display1(Node *curr)
+{
+    while(curr!=NULL)
+    {
+        cout<<curr->data<<" ";
+        curr=curr->next;
+    }
+    cout<<endl;
+}
+
+string firstnonrepeating(string A,int n)
+{
+    vector<int>vis(26,0);
+    string ans =" ";
+    vector<char>v;
+    
+    for(int i=0;i<n;i++)
+    {
+        if(!vis[A[i]-'a']){
+            v.push_back(A[i]);
+        }
+        vis[A[i]-'a']++;
+        int f=0;
+        int m = v.size();
+        
+        for(int j=0;j<m;j++)
+        {
+            if(vis[v[j]-'a']==1)
+            {
+                ans.push_back(v[j]);
+                f=1;
+                break;
+            }
+        }
+        if(f==0)
+          ans.push_back('#');
+    }
+    return ans;
+}
+
+int main()
+{
+    string A ="aabc";
+    int n = A.length();
+    create(A,n);
+   // display1(head);
+  
+    string ans = firstnonrepeating(A,n);
+    cout<<ans;
+    
+    
+
+    return 0;
+}
