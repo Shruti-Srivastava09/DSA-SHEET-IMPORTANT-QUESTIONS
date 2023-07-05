@@ -1,0 +1,28 @@
+ vector <int> zigZagTraversal(Node* root)
+    {
+        vector <int> ans;
+    	queue<Node *>q;
+    	if(!root) return ans;
+    	q.push(root);
+    	int f=1;  // odd even check karne ke liye
+    	
+    	while(!q.empty())
+    	{
+    	    vector<int>temp;  // har level ka saara element store hoga
+    	    int sz= q.size();
+    	    while(sz--)
+    	    {
+    	        Node *t= q.front();
+    	        temp.push_back(t->data);
+    	        q.pop();
+    	        
+    	        if(t->left) q.push(t->left);
+    	        if(t->right) q.push(t->right);
+    	    }
+    	    if(f%2==0) reverse(temp.begin(),temp.end());
+    	    for(int i=0;i<temp.size();i++)
+    	       ans.push_back(temp[i]);
+    	       f=!f;  // vapas se f=1 hojayega
+    	}
+    	return ans;
+    }
