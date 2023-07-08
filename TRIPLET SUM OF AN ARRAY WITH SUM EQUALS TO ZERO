@@ -1,0 +1,80 @@
+TIME COMPLEXITY - O(N^3)
+SPACE COMPLEXITY - O(1)
+
+bool findTriplets(int arr[], int n)
+    { 
+        //Your code here
+        for(int i=0;i<n-2;i++)
+        {
+            for(int j=i+1;j<n-1;j++)
+            {
+                for(int k=j+1;k<n;k++)
+                {
+                    if(arr[i]+arr[j]+arr[k]==0)
+                    {
+                        return true;
+                        break;
+                    }
+                }
+            }
+        }
+        return false;
+    }  
+
+
+TIME COMPLEXITY - 0(N^2)
+SPACE COMPLEXITY - 0(N)
+
+ bool findTriplets(int arr[], int n)
+    { 
+        //Your code here
+        bool found = false;
+        
+        for(int i=0;i<n-1;i++)
+        {
+            unordered_set<int>set;
+            for(int j=i+1;j<n;j++)
+            {
+                int x = -(arr[i] +arr[j]);
+                if(set.find(x)!= set.end()){
+                    found = true;
+                    break;
+                }
+                else
+                   set.insert(arr[j]);
+            }
+            if(found!=0) break;
+        }
+        return found;
+    }
+
+
+TIME COMPLEXITY - 0(N^2)
+SPACE COMPLEXITY - 0(1)
+
+   //Your code here
+         bool found = false;
+
+   sort(arr, arr + n);
+
+   for (int i = 0; i < n - 1; i++) {
+     int l = i + 1;
+     int r = n - 1;
+     int x = arr[i];
+     while (l < r) {
+       if (x + arr[l] + arr[r] == 0) {
+
+         l++;
+         r--;
+         found = true;
+         break;
+       } else if (x + arr[l] + arr[r] < 0)
+         l++;
+       else
+         r--;
+     }
+     if (found) break;
+   }
+
+   return found;
+    }
